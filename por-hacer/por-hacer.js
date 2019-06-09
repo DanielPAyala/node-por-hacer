@@ -39,7 +39,7 @@ const actualizar = (descripcion, completado = true) => {
     cargarDB();
     let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
     if(index >= 0) {
-        listadoPorHacer[index].completado = completado;
+        listadoPorHacer[index].completado = JSON.parse(completado);
         guardarDB();
         return true;
     } else {
@@ -59,9 +59,16 @@ const borrar = (descripcion) => {
     }
 }
 
+const filtrarPorEstado = (estado) => {
+    cargarDB();
+    let filtro = listadoPorHacer.filter((arreglo) => arreglo.completado === JSON.parse(estado));
+    return filtro;
+}
+
 module.exports = {
     crear,
     getListado,
     actualizar,
-    borrar
+    borrar,
+    filtrarPorEstado
 }

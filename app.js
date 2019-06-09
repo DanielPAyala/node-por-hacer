@@ -30,6 +30,16 @@ switch (comando) {
         let borrado = porHacer.borrar(argv.descripcion);
         console.log(borrado);
         break;
+    case 'filtrar':
+        let filtro = porHacer.filtrarPorEstado(argv.completado);
+        console.log(filtro);
+        for(let tarea of filtro) {
+            console.log(colors.green('====== Tarea ======'));
+            console.log(tarea.descripcion);
+            console.log(`Estado: ${tarea.completado}`);
+            console.log(colors.green('==================='));
+        }
+        break;
     default:
         console.log('Comando no es reconocido');
         break;
